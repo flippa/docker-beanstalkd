@@ -1,6 +1,10 @@
 # docker-beanstalkd
 
 ## Usage
+
+Include as part of your docker-compose file e.g.
+
 ```
-docker run --name beanstalkd -d lcgc/beanstalkd:1.10
+beanstalkd:
+  build: "/path/to/docker-beanstalkd"
 ```
