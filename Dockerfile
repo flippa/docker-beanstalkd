@@ -1,9 +1,9 @@
-FROM alpine:3.2
+FROM alpine:3.3
 MAINTAINER Eagle Liut <eagle@dantin.me>
 
 ENV version="1.10"
 
-RUN apk --update add --virtual build-dependencies \
+RUN apk --no-cache add --virtual build-dependencies \
   gcc \
   make \
   musl-dev \
@@ -14,8 +14,7 @@ RUN apk --update add --virtual build-dependencies \
   && make \
   && cp beanstalkd /usr/bin \
   && apk del build-dependencies \
-  && rm -rf /tmp/* \
-  && rm -rf /var/cache/apk/*
+  && rm -rf /tmp/*
 
 EXPOSE 11300
 CMD ["beanstalkd", "-p", "11300", "-u", "nobody"]
